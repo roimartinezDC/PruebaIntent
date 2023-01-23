@@ -60,8 +60,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
+        // El botón para iniciar el navegador
+        val browseButton = findViewById<Button>(R.id.btn_browse)
+        // texto que queremos buscar
+        val url = findViewById<EditText>(R.id.editTextBrowse)
+        browseButton.setOnClickListener{
+            // creamos un intent específico que iniciará el navegador
+            val intent = Intent(Intent.ACTION_VIEW)
+            // rellenamos el intent con el texto
+            intent.data = Uri.parse("http://"+url.text.toString())
+            // llamamos a la activity navegador
+            startActivity(intent)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
