@@ -3,10 +3,12 @@ package com.example.pruebaintent
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -44,6 +46,21 @@ class MainActivity : AppCompatActivity() {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(takePictureIntent, REQ_IMG_CAP)
         }
+
+        // El botón para iniciar el teléfono
+        val callButton = findViewById<Button>(R.id.btn_call)
+        // numero de telefono al que queremos llamar
+        val nro = findViewById<EditText>(R.id.editTextPhone)
+        callButton.setOnClickListener{
+            // creamos un intent específico que iniciará el teléfono
+            val intent = Intent(Intent.ACTION_DIAL)
+            // rellenamos el intent con el número
+            intent.data = Uri.parse("tel:" + nro.text)
+            // llamamos a la activity treléfono
+            startActivity(intent)
+        }
+
+
 
     }
 
